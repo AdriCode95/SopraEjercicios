@@ -10,71 +10,55 @@ public class Par_impar {
 
     public static void main(String[] args) {
 
-        ejercicio_1();
-        ejercicio_2();
-        ejercicio_3();
+        boolean decision = true;
+
+        try (Scanner ah = new Scanner(System.in)) {
+            while (decision) {
+
+                System.out.println("Para ver el ejercicio 1 indique 1,");
+                System.out.println("Para ver el ejercicio 2 indique 2,");
+                System.out.println("Para ver el ejercicio 3 indique 3,");
+                System.out.println("Para salir pulse cualquier otro.");
+
+                int eleccion = ah.nextInt();
+
+                switch (eleccion) {
+                    case 1:
+                        ejercicio_1(ah);
+                        break;
+                    case 2:
+                        ejercicio_2();
+                        break;
+                    case 3:
+                        ejercicio_3(ah);
+                        break;
+                    default:
+                        decision = false;
+                        break;
+                }
+            }
+        }
 
     }
 
-    public static void ejercicio_1() {
+    public static void ejercicio_1(Scanner ah) {
 
         // Lee un número y comprueba par o impar.
 
         System.out.println("Introduzca un número entero:");
 
-        try (Scanner sc = new Scanner(System.in)) {
-            int numero = sc.nextInt();
+        int numero = ah.nextInt();
 
-            if (numero % 2 == 0) {
-                for (int i = numero; i >= 0; i = i - 2) {
-                    System.out.println(i);
-                }
-            } else {
-                for (int i = numero; i > 0; i = i - 2) {
-                    System.out.println(i);
-                }
+        if (numero % 2 == 0) {
+            for (int i = numero; i >= 0; i = i - 2) {
+                System.out.println(i);
+            }
+        } else {
+            for (int i = numero; i > 0; i = i - 2) {
+                System.out.println(i);
             }
         }
-    }
 
-    // Algoritmo de salario
-
-    public static void ejercicio_3() {
-
-        try (Scanner sc = new Scanner(System.in)) {
-
-            double horasTrabajadas;
-            double tarifaPorHora;
-            double sueldo;
-            double horasExtras;
-            double tarifaPorHoraExtra;
-            double precioHorasExtras;
-            double precioHorasTrabajadas;
-
-            System.out.println("Introduzca el número de horas trabajadas:");
-            horasTrabajadas = sc.nextDouble();
-            System.out.println("Introduzca la tarifa, puede ser decimal con comas:");
-            tarifaPorHora = sc.nextDouble();
-
-            if (horasTrabajadas <= 40) {
-                sueldo = horasTrabajadas * tarifaPorHora;
-                System.out.println(sueldo + " euros.");
-
-            } else {
-
-                horasExtras = horasTrabajadas - 40;
-                double cincuentaPorCiento = tarifaPorHora / 2;
-                tarifaPorHoraExtra = cincuentaPorCiento + tarifaPorHora;
-
-                precioHorasExtras = tarifaPorHoraExtra * horasExtras;
-                precioHorasTrabajadas = tarifaPorHora * 40;
-
-                sueldo = precioHorasExtras + precioHorasTrabajadas;
-
-                System.out.println(sueldo + " euros.");
-
-            }
-        }
     }
 
     public static void ejercicio_2() {
@@ -170,5 +154,43 @@ public class Par_impar {
         personaList.add(new Persona(60, 'M'));
         personaList.add(new Persona(42, 'M'));
         personaList.add(new Persona(39, 'H'));
+    }
+
+    // Algoritmo de salario
+
+    public static void ejercicio_3(Scanner ah) {
+
+        double horasTrabajadas;
+        double tarifaPorHora;
+        double sueldo;
+        double horasExtras;
+        double tarifaPorHoraExtra;
+        double precioHorasExtras;
+        double precioHorasTrabajadas;
+
+        System.out.println("Introduzca el número de horas trabajadas:");
+        horasTrabajadas = ah.nextDouble();
+        System.out.println("Introduzca la tarifa, puede ser decimal con comas:");
+        tarifaPorHora = ah.nextDouble();
+
+        if (horasTrabajadas <= 40) {
+            sueldo = horasTrabajadas * tarifaPorHora;
+            System.out.println(sueldo + " euros.");
+
+        } else {
+
+            horasExtras = horasTrabajadas - 40;
+            double cincuentaPorCiento = tarifaPorHora / 2;
+            tarifaPorHoraExtra = cincuentaPorCiento + tarifaPorHora;
+
+            precioHorasExtras = tarifaPorHoraExtra * horasExtras;
+            precioHorasTrabajadas = tarifaPorHora * 40;
+
+            sueldo = precioHorasExtras + precioHorasTrabajadas;
+
+            System.out.println(sueldo + " euros.");
+
+        }
+
     }
 }
