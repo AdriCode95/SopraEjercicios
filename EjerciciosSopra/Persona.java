@@ -1,3 +1,5 @@
+package EjerciciosSopra;
+
 public class Persona {
 
     private char sexo;
